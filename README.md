@@ -1,5 +1,5 @@
 # pasmcli
-The pasmcli is a command line tool to manage, control and access secrets with Entrust PASM Vault.
+The pasmcli(previously vaultcli) is a command line tool to manage, control and access secrets with Entrust PASM Vault.
 
 The Entrust PASM Vault provides centralized secure storage for managing and controlling access to secrets required to access systems and resources. Access to secrets are restricted to authorized applications and users.
 
