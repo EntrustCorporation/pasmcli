@@ -10,4 +10,6 @@ You can securely store, manage, and access control secrets such as credentials, 
 3. To manage the PASM Vault using the pasmcli, you must be the admin for that PASM Vault and have the login URL for the same.
 4. All users authorized to access the PASM Vault can use the pasmcli with the login URL.
 
-For more information, see the PASM Vault chapter in the KeyControl documentation at https://hytrust.com/docs.
+pasmcli's for Linux & Windows for each release can be found in Releases section (https://github.com/EntrustCorporation/pasmcli/releases)
+
+For more information, see the PASM Vault chapter in the Key Management Systems documentation at https://trustedcare.entrust.com/.
