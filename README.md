@@ -19,7 +19,11 @@ pasmcli's for Linux & Windows for each release can be found in Releases section 
 The code in this repo corresponds to the latest released version of pasmcli. In general, to use pasmcli, head over to Releases section to get pre-compiled binaries. If you do plan to build, follow instructions below.
 1. Install go. pasmcli/Makefile expects to find go at /usr/local/go/bin/go
 2. cd to pasmcli/
-3. To build Linux & Windows cli binaries, do, # gmake all
-4. To clean workspace, do # gmake clean
+3. To build Linux & Windows cli binaries,
+   
+   ```$ make all```
+5. To clean workspace,
+   
+   ```$ make clean```
 
 For more information, see the Secrets Vault chapter in the Key Management Systems documentation at https://trustedcare.entrust.com/.
