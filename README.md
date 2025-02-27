@@ -21,9 +21,9 @@ The code in this repo corresponds to the latest released version of pasmcli. In 
 2. cd to pasmcli/
 3. To build Linux & Windows cli binaries,
    
-   ```$ make all```
+   ```$ gmake all```
 5. To clean workspace,
    
-   ```$ make clean```
+   ```$ gmake clean```
 
 For more information, see the Secrets Vault chapter in the Key Management Systems documentation at https://trustedcare.entrust.com/.
