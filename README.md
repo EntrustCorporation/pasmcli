@@ -7,8 +7,8 @@ You can securely store, manage, and access control secrets such as credentials, 
 
 1. The pasmcli requires Entrust KeyControl version 5.2 or later.
 2. The Secrets Vault must be created by the KeyControl Vault Administrator.
-3. To manage the Secrets Vault using the pasmcli, you must be the admin for that Secrets Vault and have the login URL for the same.
-4. All users authorized to access the Secrets Vault can use the pasmcli with the login URL.
+3. To manage the Secrets Vault using the pasmcli, you must be the admin for that Secrets Vault and have the login API URL for the same.
+4. All users authorized to access the Secrets Vault can use the pasmcli with the login API URL of that Vault (example format: https://\<csp-vault-ip>/vault/1.0/Login/\<vault-id>/)
 
 ## Releases
 
