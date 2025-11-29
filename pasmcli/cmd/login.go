@@ -20,12 +20,14 @@ import (
 	// standard
 
 	"bufio"
+	"cli/getpasswd"
 	"encoding/json"
 	"fmt"
 	"net/url"
 	"os"
+	"regexp"
 	"strings"
-	"cli/getpasswd"
+
 	"github.com/spf13/cobra"
 )
 
@@ -42,6 +44,10 @@ type accessToken struct {
 	Expiration string `json:"expires_at"`
 	User       string `json:"user"`
 }
+
+var VaultName = "Secret Vault"
+
+var login_url_pattern = `^https://\d{1,3}(\.\d{1,3}){3}/vault/1\.0/Login/[0-9a-fA-F-]+/?$`
 
 func getCredentials(prefix, user, password string) (string, string) {
 
@@ -84,13 +90,10 @@ func loginAPI(cmd *cobra.Command, args []string) {
 
 	// login URL
 	loginURL, _ := flags.GetString(loginOptionLoginURL)
-	if !strings.HasPrefix(loginURL, "https://") {
-		fmt.Printf("Provide complete login URL\n")
+	matched, err := regexp.MatchString(login_url_pattern, loginURL)
+	if err != nil || !matched {
+		fmt.Printf("Invalid %s login URL: %s\nPlease provide a valid login URL for %s\nExpected format: https://<ip>/vault/1.0/Login/<vaultid>/\n", VaultName, loginURL, VaultName)
 		os.Exit(1)
-	}
-	// append trailing slash - Vault Server (Django) requires it
-	if !strings.HasSuffix(loginURL, "/") {
-		loginURL = loginURL + "/"
 	}
 	uri, err := url.Parse(loginURL)
 	if err != nil {

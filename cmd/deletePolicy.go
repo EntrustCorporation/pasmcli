@@ -17,79 +17,79 @@ limitations under the License.
 package cmd
 
 import (
-    // standard
-    "os"
-    "fmt"
-    "bytes"
-    "encoding/json"
-    // external
-    "github.com/spf13/cobra"
-)
+	// standard
+	"bytes"
+	"encoding/json"
+	"fmt"
+	"os"
 
+	// external
+	"github.com/spf13/cobra"
+)
 
 // deletePolicyCmd represents the delete-policy command
 var deletePolicyCmd = &cobra.Command{
-    Use:   "delete-policy",
-    Short: "Delete Policy",
-    Run: func(cmd *cobra.Command, args []string) {
-        flags := cmd.Flags()
-        params := map[string]interface{}{}
+	Use:   "delete-policy",
+	Short: "Delete Policy",
+	Run: func(cmd *cobra.Command, args []string) {
+		flags := cmd.Flags()
+		params := map[string]interface{}{}
 
-        // create request payload
-        policyid, _ := flags.GetString("policyid")
-        params["policy_id"] = policyid
+		// create request payload
+		policyid, _ := flags.GetString("policyid")
+		params["policy_id"] = policyid
 
-        // JSONify
-        jsonParams, err := json.Marshal(params)
-        if (err != nil) {
-            fmt.Println("Error building JSON request: ", err)
-            os.Exit(1)
-        }
+		// JSONify
+		jsonParams, err := json.Marshal(params)
+		if err != nil {
+			fmt.Println("Error building JSON request: ", err)
+			os.Exit(1)
+		}
 
-        // now POST
-        endpoint := GetEndPoint("", "1.0", "DeletePolicy")
-        ret, err := DoPost(endpoint,
-                               GetCACertFile(),
-                               AuthTokenKV(),
-                               jsonParams,
-                               "application/json")
-        if err != nil {
-            fmt.Printf("\nHTTP request failed: %s\n", err)
-            os.Exit(4)
-        } else {
-            // type assertion
-            retBytes := ret["data"].(*bytes.Buffer)
-            retStatus := ret["status"].(int)
-            retStr := retBytes.String()
+		// now POST
+		endpoint := GetEndPoint("", "1.0", "DeletePolicy")
+		ret, err := DoPost(endpoint,
+			GetCACertFile(),
+			AuthTokenKV(),
+			jsonParams,
+			"application/json")
+		if err != nil {
+			fmt.Printf("\nHTTP request failed: %s\n", err)
+			os.Exit(4)
+		} else {
+			// type assertion
+			retBytes := ret["data"].(*bytes.Buffer)
+			retStatus := ret["status"].(int)
+			retStr := retBytes.String()
 
-            if (retStr == "" && retStatus == 404) {
-                fmt.Println("\nPolicy not found\n")
-                os.Exit(5)
-            }
+			if retStr == "" && retStatus == 404 {
+				fmt.Println("\nPolicy not found\n")
+				os.Exit(5)
+			}
 
-            if retStatus == 200 {
-                fmt.Println("\nPolicy deleted successfully\n")
-                os.Exit(0)
-            } else {
-                fmt.Println("\n" + retStr + "\n")
+			if retStatus == 200 {
+				fmt.Println("\nPolicy deleted successfully\n")
+				os.Exit(0)
+			} else {
+				fmt.Println("\n" + retStr + "\n")
 
-                // make a decision on what to exit with
-                retMap := JsonStrToMap(retStr)
-                if _, present := retMap["error"]; present {
-                    os.Exit(3)
-                } else {
-                    os.Exit(100)
-                }
-            }
-        }
-    },
+				// make a decision on what to exit with
+				retMap := JsonStrToMap(retStr)
+				if _, present := retMap["error"]; present {
+					os.Exit(3)
+				} else {
+					os.Exit(100)
+				}
+			}
+		}
+	},
 }
 
 func init() {
-    rootCmd.AddCommand(deletePolicyCmd)
-    deletePolicyCmd.Flags().StringP("policyid", "p", "",
-                               "Id or name of the Policy to be deleted")
+	rootCmd.AddCommand(deletePolicyCmd)
+	deletePolicyCmd.Flags().StringP("policyid", "p", "",
+		"Id of the Policy to be deleted")
 
-    // mark mandatory fields as required
-    deletePolicyCmd.MarkFlagRequired("policyid")
+	// mark mandatory fields as required
+	deletePolicyCmd.MarkFlagRequired("policyid")
 }
