@@ -148,7 +148,7 @@ func init() {
 	loginCmd.Flags().StringP(loginOptionPassword, "p", "",
 		"Login password. You will be prompted to enter if not provided.")
 	loginCmd.Flags().StringP(loginOptionLoginURL, "l", "",
-		"Login URL")
+		"API Login URL")
 
 	// mark mandatory fields as required
 	loginCmd.MarkFlagRequired(loginOptionCACert)

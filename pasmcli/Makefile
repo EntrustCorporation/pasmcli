@@ -29,7 +29,7 @@ all:
 	@/usr/bin/cp -r $(PARENTDIR)/cmd/. $(WORKSPACE_SRCDIR)/cmd/
 	@cd $(WORKSPACE_SRCDIR) && $(GOCMD) mod init cli
 	@cd $(WORKSPACE_SRCDIR) && $(GOCMD) mod tidy
-	@/usr/bin/echo "Compiling pasmcli for Linux, Windows & Mac..."
+	@/usr/bin/echo "Compiling pasmcli for Linux &  Windows..."
 	@cd $(WORKSPACE_SRCDIR) && (env GOOS=linux GOARCH=amd64 $(GOCMD) build -o $(WORKSPACE_BINDIR)/$(PASMCLI_LINUX) $(PASMCLI_MAINGO))
 	@cd $(WORKSPACE_SRCDIR) && (env GOOS=windows GOARCH=amd64 $(GOCMD) build -o $(WORKSPACE_BINDIR)/$(PASMCLI_WINDOWS) $(PASMCLI_MAINGO))
 	@/usr/bin/echo "Please find respective Linux & Windows pasmcli binaries, $(PASMCLI_LINUX) & $(PASMCLI_WINDOWS) at $(WORKSPACE_BINDIR)"

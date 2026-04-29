@@ -27,9 +27,9 @@ import (
 // versionCmd represents the version command
 var versionCmd = &cobra.Command{
     Use:   "version",
-    Short: "Version of Entrust PASM Vault cli",
+    Short: "Version of Entrust Secrets Vault cli",
     Run: func(cmd *cobra.Command, args []string) {
-        fmt.Println("1.7")
+        fmt.Println("1.8")
     },
 }
 
