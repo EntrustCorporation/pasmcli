@@ -26,4 +26,4 @@ The code in this repo corresponds to the latest released version of pasmcli. In 
    
    ```$ gmake clean```
 
-For more information, see the Secrets Vault chapter in the Key Management Systems documentation at https://trustedcare.entrust.com/.
+For more information, see the "Cryptographic Security Platform Vault for Secrets" chapter in the Key Management Systems documentation at https://trustedcare.entrust.com/.
