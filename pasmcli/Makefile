@@ -16,7 +16,6 @@ WORKSPACE_BINDIR = $(WORKSPACE)/bin
 PASMCLI_MAINGO = main.go
 
 PASMCLI_LINUX = pasmcli
-PASMCLI_WINDOWS = pasmcli.exe
 
 all:
 	@/usr/bin/echo "Clearing old Workspace if any at $(WORKSPACE).."
@@ -29,10 +28,9 @@ all:
 	@/usr/bin/cp -r $(PARENTDIR)/cmd/. $(WORKSPACE_SRCDIR)/cmd/
 	@cd $(WORKSPACE_SRCDIR) && $(GOCMD) mod init cli
 	@cd $(WORKSPACE_SRCDIR) && $(GOCMD) mod tidy
-	@/usr/bin/echo "Compiling pasmcli for Linux &  Windows..."
+	@/usr/bin/echo "Compiling pasmcli for Linux..."
 	@cd $(WORKSPACE_SRCDIR) && (env GOOS=linux GOARCH=amd64 $(GOCMD) build -o $(WORKSPACE_BINDIR)/$(PASMCLI_LINUX) $(PASMCLI_MAINGO))
-	@cd $(WORKSPACE_SRCDIR) && (env GOOS=windows GOARCH=amd64 $(GOCMD) build -o $(WORKSPACE_BINDIR)/$(PASMCLI_WINDOWS) $(PASMCLI_MAINGO))
-	@/usr/bin/echo "Please find respective Linux & Windows pasmcli binaries, $(PASMCLI_LINUX) & $(PASMCLI_WINDOWS) at $(WORKSPACE_BINDIR)"
+	@/usr/bin/echo "Please find Linux pasmcli binary, $(PASMCLI_LINUX) at $(WORKSPACE_BINDIR)"
 
 install:
 
