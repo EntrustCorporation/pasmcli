@@ -12,14 +12,14 @@ You can securely store, manage, and access control secrets such as credentials, 
 
 ## Releases
 
-pasmcli's for Linux & Windows for each release can be found in Releases section (https://github.com/EntrustCorporation/pasmcli/releases)
+pasmcli for Linux, for each release can be found in Releases section (https://github.com/EntrustCorporation/pasmcli/releases)
 
 ## Build instructions
 
 The code in this repo corresponds to the latest released version of pasmcli. In general, to use pasmcli, head over to Releases section to get pre-compiled binaries. If you do plan to build, follow instructions below.
 1. Install go. pasmcli/Makefile expects to find go at /usr/local/go/bin/go
 2. cd to pasmcli/
-3. To build Linux & Windows cli binaries,
+3. To build Linux cli binary,
    
    ```$ gmake all```
 5. To clean workspace,
